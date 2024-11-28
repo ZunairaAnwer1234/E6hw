@@ -1,0 +1,309 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>JavaScript Functions and Features</title>  
+    <style>  
+        body {  
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow';  
+            background-color: #fdfdfd;  
+            color: #36063c;  
+            margin: 0;  
+            padding: 20px;  
+        }  
+        h1 {  
+            color: #270727;  
+        }  
+        .function {  
+            background: #eddab4;  
+            padding: 20px;  
+            margin-bottom: 20px;  
+            border-radius: 5px;  
+            box-shadow: 0 2px 10px rgba(218, 178, 214, 0.1);  
+        }  
+        .output {  
+            background: #d4d4d4;  
+            padding: 10px;  
+            border: 2px solid #000000;  
+            margin-top: 10px;  
+            border-radius: 5px;  
+        }  
+    </style>  
+</head>  
+<body>  
+
+<h1>JavaScript Functions and Features</h1>  
+
+<div class="function">  
+    <h2>Variable Scoping with var, let, and const</h2>  
+    <script>  
+        function variableScopes() {  
+            var globalVar = "I am a global variable";  
+            let blockLet = "I am a block-scoped variable";   
+            const blockConst = "I am a block-scoped constant";   
+
+            return `Global Variable: ${globalVar}, Block Scoped Let: ${blockLet}, Block Scoped Const: ${blockConst}`;  
+        }  
+        document.write(`<div class="output">${variableScopes()}</div>`);  
+    </script>  
+</div>  
+
+<div class="function">  
+    <h2>Closure with Multiplier Function</h2>  
+    <script>  
+        function createMultiplier(multiplier) {  
+            return function(number) {  
+                return number * multiplier;  
+            };  
+        }  
+        const double = createMultiplier(2);  
+        const triple = createMultiplier(3);  
+        
+        document.write(`<div class="output">Double of 5: ${double(5)}<br> Triple of 5: ${triple(5)}</div>`);  
+    </script>  
+</div>  
+
+<div class="function">  
+    <h2>Destructuring with Default Values</h2>  
+    <script>  
+        function personInfo({ name, age, country = "Unknown", city = "Unknown" }) {  
+            return `Name: ${name}, Age: ${age}, Country: ${country}, City: ${city}`;  
+        }  
+        document.write(`<div class="output">${personInfo({ name: "zunaira", age: 21 })}</div>`);  
+    </script>  
+</div>  
+
+<div class="function">  
+    <h2>Calculate Total with Discounts</h2>  
+    <script>  
+        function calculateTotal(price, ...discounts) {  
+            return discounts.reduce((total, discount) => total - discount, price);  
+        }  
+        document.write(`<div class="output">Total after discounts: $${calculateTotal(100, 10, 5)}</div>`);  
+    </script>  
+</div>  
+
+<div class="function">  
+    <h2>Calculator Object with Methods</h2>  
+    <script>  
+        const calculator = {  
+            add: (a, b) => a + b,  
+            subtract: (a, b) => a - b,  
+        };  
+        
+        document.write(`<div class="output">5 + 3 = ${calculator.add(5, 3)}<br> 5 - 3 = ${calculator.subtract(5, 3)}</div>`);  
+    </script>  
+</div>  
+
+<div class="function">  
+    <h2>Logging Book Information</h2>  
+    <script>  
+        const books = [  
+            { title: "1984", author: "George Orwell", yearPublished: 1949 },  
+            { title: "To Kill a Mockingbird", author: "Harper Lee", yearPublished: 1960 },  
+        ];  
+
+        let booksInfo = "";  
+        for (const book of books) {  
+            booksInfo += `${book.title} by ${book.author}, published in ${book.yearPublished}<br>`;  
+        }  
+        document.write(`<div class="output">${booksInfo}</div>`);  
+    </script>  
+</div>  
+
+<div class="function">  
+    <h2>Unique ID Generator</h2>  
+    <script>  
+        function* idGenerator() {  
+            let id = 1;  
+            while (true) {  
+                yield id++;  
+            }  
+        }  
+        
+        const generator = idGenerator();  
+        document.write(`<div class="output">Unique IDs: ${generator.next().value}, ${generator.next().value}, ${generator.next().value}</div>`);  
+    </script>  
+</div>  
+
+<div class="function">  
+    <h2>Basic Math Operations Module</h2>  
+    <script>  
+        const add = (a, b) => a + b;  
+        const subtract = (a, b) => a - b;  
+        const multiply = (a, b) => a * b;  
+        const divide = (a, b) => a / b;  
+
+        document.write(`<div class="output">Add: ${add(5, 3)}, Subtract: ${subtract(5, 3)}, Multiply: ${multiply(5, 3)}, Divide: ${divide(5, 3)}</div>`);  
+    </script>  
+</div>  
+
+<div class="function">  
+    <h2>Iterating Over Student Object Properties</h2>  
+    <script>  
+        const student = {  
+            name: "zunaira",  
+            age: 21,  
+            grade: "A",  
+            subjects: ["Math", "Science"],  
+        };  
+
+        let studentInfo = "";  
+        for (const property in student) {  
+            studentInfo += `${property}: ${student[property]}<br>`;  
+        }  
+        document.write(`<div class="output">${studentInfo}</div>`);  
+    </script>  
+</div>  
+
+<div class="function">  
+    <h2>Squaring Numbers with map</h2>  
+    <script>  
+        let numbers = [1, 2, 3, 4];  
+        let squaredNumbers = numbers.map(num => num ** 2);  
+
+        document.write(`<div class="output">Original: ${numbers.join(', ')}<br>Squared: ${squaredNumbers.join(', ')}</div>`);  
+    </script>  
+</div>  
+
+<div class="function">  
+    <h2>Operate Function with Callbacks</h2>  
+    <script>  
+        function operate(a, b, callback) {  
+            return callback(a, b);  
+        }  
+
+        const addCallback = (x, y) => x + y;  
+        const subtractCallback = (x, y) => x - y;  
+
+        document.write(`<div class="output">5 + 3 = ${operate(5, 3, addCallback)}<br> 5 - 3 = ${operate(5, 3, subtractCallback)}</div>`);  
+    </script>  
+</div>  
+
+<div class="function">  
+    <h2>Fetch Data with Promise</h2>  
+    <script>  
+        function fetchData() {  
+            return new Promise((resolve) => {  
+                resolve("Data received!");  
+            });  
+        }  
+
+        fetchData()  
+            .then(response => document.write(`<div class="output">${response}</div>`))  
+            .catch(error => document.write(`<div class="output">Error: ${error}</div>`));  
+    </script>  
+</div>  
+
+<div class="function">  
+    <h2>Fetch Data with Async/Await</h2>  
+    <script>  
+        async function fetchDataAsync() {  
+            return "Data received!";  
+        }  
+
+        (async () => {  
+            const result = await fetchDataAsync();  
+            document.write(`<div class="output">${result}</div>`);  
+        })();  
+    </script>  
+</div>  
+
+<div class="function">  
+    <h2>Exponentiation Function</h2>  
+    <script>  
+        function exponentiate(base, exponent) {  
+            return base ** exponent;  
+        }  
+
+        document.write(`<div class="output">2 to the power of 3: ${exponentiate(2, 3)}<br> 5 to the power of 2: ${exponentiate(5, 2)}</div>`);  
+    </script>  
+</div>  
+
+<div class="function">  
+    <h2>Animal Class</h2>  
+    <script>  
+        class Animal {  
+            constructor(name, species) {  
+                this.name = name;  
+                this.species = species;  
+            }  
+
+            speak() {  
+                document.write(`<div class="output">${this.name} the ${this.species} says, "Hello!"</div>`);  
+            }  
+        }  
+
+        const dog = new Animal("Dog", "Mammal");  
+        const cat = new Animal("Cat", "Mammal");  
+        dog.speak();  
+        cat.speak();  
+    </script>  
+</div>  
+
+<div class="function">  
+    <h2>Check Even or Odd</h2>  
+    <script>  
+        function checkEvenOdd(num) {  
+            return num % 2 === 0 ? "Even" : "Odd";  
+        }  
+
+        document.write(`<div class="output">4 is ${checkEvenOdd(4)}<br> 3 is ${checkEvenOdd(3)}</div>`);  
+    </script>  
+</div>  
+
+<div class="function">  
+    <h2>Safe Logging with Optional Chaining</h2>  
+    <script>  
+        const user = {  
+            name: "zunaira",  
+            address: {  
+                city: "kararchi"  
+            }  
+        };  
+
+        function logCity(userObj) {  
+            return userObj.address?.city ?? "City not found";  
+        }  
+
+        document.write(`<div class="output">City: ${logCity(user)}</div>`);  
+        
+
+
+        // question 12
+        
+        function greet() {
+  console.log("Hello, World!");
+}
+
+setTimeout(greet, 3000);
+
+
+
+// question 13
+
+let intervalId;
+
+function logTime() {
+  const now = new Date().toLocaleTimeString();
+  console.log(now);
+}
+
+setTimeout(() => {
+  intervalId = setInterval(logTime, 2000);
+}, 10000);
+
+setTimeout(() => {
+  clearInterval(intervalId);
+  console.log("Interval cleared.");
+}, 20000);
+
+
+    </script>  
+
+    
+</div>  
+
+</body>  
+</html>
